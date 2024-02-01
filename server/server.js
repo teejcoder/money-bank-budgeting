@@ -8,12 +8,6 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5001;
 
-// Log incoming requests
-app.use((req, res, next) => {
-  console.log(`Incoming request: ${req.method} ${req.url}`);
-  next();
-});
-
 // Enable CORS with specified options
 const corsOptions = {
   origin: 'https://moneybank.cyclic.app',
@@ -40,8 +34,10 @@ app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
 
 // Serve the React app's index.html for the root path
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+app.get('/', (_, res) => {
+  res.sendFile(path.join(__dirname, 'client/build/index.html', function(err) {
+    console.err(err)
+  }));
 });
 
 // Start the server

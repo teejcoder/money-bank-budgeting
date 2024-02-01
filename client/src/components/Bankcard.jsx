@@ -88,6 +88,8 @@ const Bankcard = () => {
             
             {/* BAR CHART & TOTAL BALANCE*/}
             <div className='text-center p-5 chart-container'>
+              <h2 className='text-5xl text-blue-600'>{transactions.length}</h2>
+              <span className='text-gray-400 text-sm'>Number of Transactions</span>
               <h2 className='text-5xl text-green-600'>${totalBalance}</h2>
               <span className='text-gray-400 text-sm'>Available</span>
               <h3 className='mt-10'>Monthly Income v Expenses</h3>

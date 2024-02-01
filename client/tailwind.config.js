@@ -22,7 +22,7 @@ module.exports = {
       // Define custom colors for buttons
       colors: {
         btnDark: '#8447FF', //purple
-        btnLight: '#2EC0F9', //blue
+        btnLight: '#98E2FF', //blue
       },
       // Customise background colors for light and dark modes
       backgroundColor: {
