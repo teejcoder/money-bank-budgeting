@@ -10,7 +10,12 @@ const __dirname = path.resolve()
 const app = express();
 const port = process.env.PORT || 5001;
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://moneybank.cyclic.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 // Use JSON and URL-encoded middleware
 app.use(express.json());
