@@ -4,6 +4,7 @@
   "description": "Money Bank Server",
   "main": "server.js",
   "scripts": {
+    "prebuild": "ulimit -n 4096 || true",
     "start": "node index.js",
     "dev": "nodemon server",
     "build": "echo 'No build steps required'",
