@@ -5,8 +5,10 @@ const apiRoutes = require('./routes/apiRoutes');
 const authRoutes = require('./routes/authRoutes');
 require('dotenv').config();
 
+const __dirname = path.resolve()
+
 const app = express();
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 
@@ -29,9 +31,12 @@ app.use('/auth', authRoutes);
 
 // Serve the React app's index.html for the root path
 app.get('*', (_, res) => {
-  res.sendFile(path.join(__dirname, 'client/build/index.html', function(err) {
-    res.status(500).send(err);
-  }));
+  res.sendFile(path.join(__dirname, 'client/build/index.html'), function (err) {
+    if (err) {
+      console.error(err);
+      res.status(500).send(err);
+    }
+  });
 });
 
 // Start the server
