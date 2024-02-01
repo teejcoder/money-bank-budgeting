@@ -8,6 +8,7 @@ require('dotenv').config();
 const __dirname = path.resolve()
 
 const app = express();
+const port = process.env.PORT || 5001;
 
 app.use(cors());
 
@@ -39,6 +40,6 @@ app.get('*', (_, res) => {
 });
 
 // Start the server
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
