@@ -17,13 +17,13 @@ const Bankcard = () => {
 
   useEffect(() => {
     // When transactions change, update charts and totals
-    if (transactions.length > 0) {
-      destroyCharts();
-      calculateTotalBalance();
-      calculateTotalDebits();
-    }
-  }, [transactions]);
-
+      if (transactions && transactions.length > 0) {
+        destroyCharts();
+        calculateTotalBalance();
+        calculateTotalDebits();
+      }
+    }, [transactions]);
+    
   const destroyCharts = () => {
     // Destroy existing chart instances to prevent duplicates
     ['pieChart', 'barChart', 'lineChart', 'doughnutChart'].forEach(chartName => {
@@ -43,7 +43,7 @@ const Bankcard = () => {
 
       // Fetch transactions using axios
       const response = await axios.post('/api/executeFlow');
-      setTransactions(response.data.data);
+      setTransactions(response.data);
     } catch (error) {
       console.error('Error fetching transactions:', error);
     } finally {
@@ -72,17 +72,6 @@ const Bankcard = () => {
 
   return (
     <div className={`flex w-full justify-center items-center flex-col ${isDarkMode ? 'bg-dark text-dark' : 'bg-light text-light'}`}>
-      {transactions.length === 0 ? (
-        <>
-          {showSpinner && <Spinner/>}
-          <Button
-            onClick={getTransactions}
-            className='border border-borderLight w-1/2 md:w-2/5 p-2 rounded-3xl hover:bg-indigo-500 hover:text-white hover:font-medium'
-          >
-            Connect Bank
-          </Button>
-        </>
-      ) : (
         <div className='text-center pt-10'><p><i>This is test data for example purposes.</i></p>
           <div className='xl:flex items-center justify-center flex-col md:flex-row mt-10 mb-10'>
             
@@ -120,7 +109,6 @@ const Bankcard = () => {
             
           </div>
         </div>
-      )}
     </div>
   );
 }

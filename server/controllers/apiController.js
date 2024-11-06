@@ -12,7 +12,7 @@ let access_token;
 const basiq_user_id = "c31ec381-8294-465c-ae21-67f9df0362f1"
 
 const apiController = {
-  // Function to execute the entire flow
+  // Function to execute the entire API flow
   executeFlow: async (req, res) => {
     try {
       // Step 1: Generate Auth Token

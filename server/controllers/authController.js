@@ -1,10 +1,8 @@
-const { createServerClient } = require('@supabase/ssr');
-const axios = require('axios');
-require('dotenv').config();
+const { createServerClient } = require('@supabase/supabase-js');
 
 const authController = {
 
-  // Function to create Supabase client for server-side rendering
+  // Function to create Supabase client
   createClient: async (context) => {
     return createServerClient(process.env.SUPABASE_URL, process.env.SUPABASE_API_KEY, {
       cookies: {
@@ -44,22 +42,6 @@ const authController = {
       return res.status(500).json({ error: 'Internal Server Error' });
     }
   },
-
-  // Logout route handler
-  logout: async (req, res) => {
-    try {
-      // Attempt to sign out the user from Supabase
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      // Respond with a JSON indicating successful logout
-      res.json({ message: 'Logout successful' });
-    } catch (error) {
-      // Handle errors during logout
-      console.error('Error:', error.message);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  }
-  
 };
 
 module.exports = authController;

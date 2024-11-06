@@ -5,13 +5,11 @@ const apiRoutes = require('./routes/apiRoutes');
 const authRoutes = require('./routes/authRoutes');
 require('dotenv').config();
 
-const __dirname = path.resolve()
-
 const app = express();
 const port = process.env.PORT || 5001;
 
 const corsOptions = {
-  origin: 'https://moneybank.cyclic.app',
+  origin: 'https://localhost:3000',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 };
@@ -22,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the 'client/build' directory
-app.use(express.static(path.join(__dirname, './client/build')));
+app.use(express.static(path.join(__dirname, './client/public')));
 
 // Custom middleware to set Cache-Control header
 app.use((req, res, next) => {
@@ -36,7 +34,7 @@ app.use('/auth', authRoutes);
 
 // Serve the React app's index.html for the root path
 app.get('*', (_, res) => {
-  res.sendFile(path.join(__dirname, './client/build/index.html'), function (err) {
+  res.sendFile(path.join(__dirname, './client/public/index.html'), function (err) {
     if (err) {
       console.error(err);
       res.status(500).send(err);
