@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Auth } from '@supabase/auth-ui-react';
-import { ThemeSupa } from '@supabase/auth-ui-shared';
-import Header from './Header';
+import Header from '../components/Header';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import { Link, Navigate } from 'react-router-dom';
-import Button from './Button';
+import Button from '../components/Button';
 import axios from 'axios';
 
 const Login = () => {
@@ -16,13 +14,6 @@ const Login = () => {
     axios.get('/auth/session').then(response => {
       setSession(response.data.session);
     });
-
-    // Subscribe to auth state changes and update session
-    const subscription = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
   }, []);
 
   const loginWithGoogle = async () => {
@@ -42,19 +33,8 @@ const Login = () => {
     <div>
       <Header />
       <div className={`flex h-screen justify-between flex-col items-center py-20 ${isDarkMode ? 'bg-dark text-dark' : 'bg-light text-light'}`}>
-        {session ? (
-          <div className='h-5/6 w-full flex items-center justify-center flex-col'>
-            <p>Logged in!</p>
-            <Link className='w-full text-center' to='/profile'>
-              <Button>Click Here to Continue!</Button>
-            </Link>
-          </div>
-        ) : (
-          <div>
-            <Button onClick={loginWithGoogle}>Login with Google</Button>
-            <Auth supabaseClient={supabase} providers={['google']} appearance={{ theme: ThemeSupa }} />
-          </div>
-        )}
+        <Button onClick={loginWithGoogle}>Login with Google</Button>
+        <Link to="/signup">Don't have an account? Sign up</Link>
       </div>
     </div>
   );

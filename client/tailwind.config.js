@@ -44,7 +44,12 @@ module.exports = {
         'montserrat': ['Montserrat'],
         'lato': ['Lato'],
         'garamond': ['Garamond']
-      }
+      },
+      container: {
+        center: true,
+        padding: "1.5rem",
+        screens: { sm: "100%", md: "100%", lg: "100%", xl: "1200px"  },
+      },
     },
   },
   // No additional plugins at the moment

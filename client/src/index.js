@@ -7,10 +7,12 @@ import {
 
 import './index.css';
 import App from './App';
-import Profile from './components/Profile';
-import ErrorPage from './components/ErrorPage';
-import Login from './components/Login';
+import Pricing from './pages/Pricing';
+import Profile from './pages/Profile';
+import ErrorPage from './pages/ErrorPage';
+import Login from './pages/Login';
 import { DarkModeProvider } from './contexts/DarkModeContext';
+
 
 // Create a browser router with defined routes
 const router = createBrowserRouter([
@@ -27,6 +29,11 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/pricing",
+    element: <Pricing />,
     errorElement: <ErrorPage />,
   },
 ]);
