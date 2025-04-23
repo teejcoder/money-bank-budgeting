@@ -1,6 +1,6 @@
 # Money Bank
 
-**Link to project:** [Money Bank](https://moneybank.netlify.app/)
+**Link to project:** [down for maintenance](https://tjmb.dev) 
 
 ![Money Bank Screenshot](https://media.giphy.com/media/GX5tnFBYTC8k260e9I/giphy.gif)
 
